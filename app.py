@@ -8,11 +8,18 @@ app = Flask(__name__)
 # Change this to a random secret key
 app.secret_key = 'your-secret-key-here-change-this-in-production'
 
-# MySQL configurations
-app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'root'  # default XAMPP username
-app.config['MYSQL_PASSWORD'] = ''    # default XAMPP password is empty
-app.config['MYSQL_DB'] = 'wedding_photos'
+# # MySQL configurations
+# app.config['MYSQL_HOST'] = 'localhost'
+# app.config['MYSQL_USER'] = 'root'  # default XAMPP username
+# app.config['MYSQL_PASSWORD'] = ''    # default XAMPP password is empty
+# app.config['MYSQL_DB'] = 'wedding_photos'
+
+import os
+
+app.config['MYSQL_HOST'] = os.environ.get('MYSQLHOST')
+app.config['MYSQL_USER'] = os.environ.get('MYSQLUSER')
+app.config['MYSQL_PASSWORD'] = os.environ.get('MYSQLPASSWORD')
+app.config['MYSQL_DB'] = os.environ.get('MYSQLDATABASE')
 
 # Initialize MySQL
 mysql = MySQL(app)
