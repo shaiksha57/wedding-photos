@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shaiksha weds Banu | Pre Wedding Photo Shoot</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section with Romantic Background */
+        .hero-section {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(255,182,193,0.9) 0%, rgba(255,105,180,0.8) 100%);
+            overflow: hidden;
+        }
+
+        /* Animated Floating Hearts */
+        .floating-hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.5);
+            animation: float 6s infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) scale(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) scale(1);
+                opacity: 0;
+            }
+        }
+
+        /* Generate random positions for hearts */
+        .heart:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .heart:nth-child(2) { left: 20%; animation-delay: 2s; }
+        .heart:nth-child(3) { left: 30%; animation-delay: 4s; }
+        .heart:nth-child(4) { left: 40%; animation-delay: 1s; }
+        .heart:nth-child(5) { left: 50%; animation-delay: 3s; }
+        .heart:nth-child(6) { left: 60%; animation-delay: 5s; }
+        .heart:nth-child(7) { left: 70%; animation-delay: 2.5s; }
+        .heart:nth-child(8) { left: 80%; animation-delay: 4.5s; }
+        .heart:nth-child(9) { left: 90%; animation-delay: 1.5s; }
+        .heart:nth-child(10) { left: 95%; animation-delay: 3.5s; }
+
+        /* Main Content */
+        .content-wrapper {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 1200px;
+            padding: 20px;
+            margin: 0 auto;
+        }
+
+        /* Couple Names */
+        .couple-names {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .couple-names h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 5rem;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 10px;
+            animation: fadeInDown 1.5s ease;
+        }
+
+        .wedding-date {
+            font-size: 1.5rem;
+            color: #fff;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            background: rgba(255,255,255,0.2);
+            display: inline-block;
+            padding: 10px 30px;
+            border-radius: 50px;
+            backdrop-filter: blur(5px);
+            animation: fadeInUp 1.5s ease;
+        }
+
+        /* Tagline */
+        .tagline {
+            text-align: center;
+            color: #fff;
+            font-size: 1.2rem;
+            margin-bottom: 50px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+            animation: fadeIn 2s ease;
+        }
+
+        /* Photo Preview Cards */
+        .photo-preview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+            animation: fadeInUp 2s ease;
+        }
+
+        .preview-card {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            height: 300px;
+        }
+
+        .preview-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .preview-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .preview-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .preview-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+            padding: 20px;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+
+        .preview-card:hover .preview-overlay {
+            transform: translateY(0);
+        }
+
+        .preview-overlay h4 {
+            margin: 0;
+            font-size: 1.2rem;
+        }
+
+        .preview-overlay p {
+            margin: 5px 0 0;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Login Card */
+        .login-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: fadeInUp 2s ease;
+        }
+
+        .login-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: 40px;
+            width: 100%;
+            max-width: 450px;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s;
+        }
+
+        .login-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .login-header i {
+            font-size: 3rem;
+            color: #4267B2;
+            margin-bottom: 15px;
+        }
+
+        .login-header h2 {
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .login-header p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            height: 55px;
+            border: 2px solid #e1e1e1;
+            border-radius: 10px;
+            padding: 0 20px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-control:focus {
+            border-color: #ff6b6b;
+            box-shadow: 0 0 0 0.2rem rgba(255,107,107,0.25);
+            outline: none;
+        }
+
+        .password-wrapper {
+            position: relative;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #999;
+        }
+
+        .toggle-password:hover {
+            color: #ff6b6b;
+        }
+
+        .btn-login {
+            width: 100%;
+            height: 55px;
+            background: linear-gradient(45deg, #ff6b6b, #ff8e53);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 15px;
+        }
+
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(255,107,107,0.4);
+        }
+
+        .btn-login i {
+            margin-right: 10px;
+        }
+
+        .facebook-login {
+            width: 100%;
+            height: 55px;
+            background: #4267B2;
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .facebook-login:hover {
+            background: #365899;
+            transform: translateY(-2px);
+        }
+
+        .facebook-login i {
+            margin-right: 10px;
+            font-size: 1.3rem;
+        }
+
+        .login-footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .login-footer a {
+            color: #666;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .login-footer a:hover {
+            color: #ff6b6b;
+        }
+
+        .alert {
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        /* Countdown Timer */
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 50px;
+            color: white;
+        }
+
+        .countdown-item {
+            text-align: center;
+            background: rgba(255,255,255,0.2);
+            padding: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+            min-width: 100px;
+        }
+
+        .countdown-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .countdown-label {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .couple-names h1 {
+                font-size: 3.5rem;
+            }
+
+            .wedding-date {
+                font-size: 1rem;
+            }
+
+            .countdown {
+                gap: 10px;
+                flex-wrap: wrap;
+            }
+
+            .countdown-item {
+                min-width: 70px;
+                padding: 10px;
+            }
+
+            .countdown-number {
+                font-size: 1.8rem;
+            }
+
+            .login-card {
+                padding: 25px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .couple-names h1 {
+                font-size: 2.5rem;
+            }
+
+            .photo-preview {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Decorative Elements */
+        .floral-decoration {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" opacity="0.1"><path d="M50,20 Q60,10 70,20 Q80,30 70,40 Q60,50 50,40 Q40,30 50,20" fill="white"/></svg>') repeat;
+            opacity: 0.1;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-section">
+        <!-- Floating Hearts -->
+        <div class="floating-hearts">
+            <div class="heart"><i class="fas fa-heart"></i></div>
+            <div class="heart"><i class="fas fa-heart"></i></div>
+            <div class="heart"><i class="fas fa-heart"></i></div>
+            <div class="heart"><i class="fas fa-heart"></i></div>
+            <div class="heart"><i class="fas fa-heart"></i></div>
+            <div class="heart"><i class="fas fa-heart"></i></div>
+            <div class="heart"><i class="fas fa-heart"></i></div>
+            <div class="heart"><i class="fas fa-heart"></i></div>
+            <div class="heart"><i class="fas fa-heart"></i></div>
+            <div class="heart"><i class="fas fa-heart"></i></div>
+        </div>
+
+        <!-- Floral Decoration -->
+        <div class="floral-decoration"></div>
+
+        <div class="content-wrapper">
+            <!-- Couple Names -->
+            <div class="couple-names" data-aos="fade-down">
+                <h1>Shaiksha ❤️ Banu</h1>
+                <div class="wedding-date">
+                    <i class="fas fa-calendar-alt me-2"></i> December 15, 2024
+                </div>
+            </div>
+
+            <!-- Tagline -->
+            <div class="tagline" data-aos="fade-up" data-aos-delay="200">
+                <i class="fas fa-camera me-2"></i>
+                "Capturing moments that will last forever"
+                <i class="fas fa-camera ms-2"></i>
+            </div>
+
+            <!-- Photo Preview -->
+            <div class="photo-preview" data-aos="fade-up" data-aos-delay="400">
+                <div class="preview-card">
+                    <img src="https://images.pexels.com/photos/1024993/pexels-photo-1024993.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Romantic Couple">
+                    <div class="preview-overlay">
+                        <h4>Romantic Moments</h4>
+                        <p>Beach photoshoot</p>
+                    </div>
+                </div>
+                <div class="preview-card">
+                    <img src="https://images.pexels.com/photos/2253870/pexels-photo-2253870.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Traditional">
+                    <div class="preview-overlay">
+                        <h4>Traditional Elegance</h4>
+                        <p>Cultural photoshoot</p>
+                    </div>
+                </div>
+                <div class="preview-card">
+                    <img src="https://images.pexels.com/photos/1682497/pexels-photo-1682497.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Candid">
+                    <div class="preview-overlay">
+                        <h4>Candid Moments</h4>
+                        <p>Natural expressions</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Login Section -->
+            <div class="login-container" data-aos="fade-up" data-aos-delay="600">
+                <div class="login-card">
+                    <!-- Flash Messages -->
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                        {% if messages %}
+                            {% for category, message in messages %}
+                                <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                                    <i class="fas fa-{{ 'check-circle' if category == 'success' else 'exclamation-circle' }} me-2"></i>
+                                    {{ message }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+
+                    <div class="login-header">
+                        <i class="fas fa-lock"></i>
+                        <h2>View Full Gallery</h2>
+                        <p>Login with your Facebook account to see all photos</p>
+                    </div>
+
+                    <!-- Login Form -->
+                    <form action="{{ url_for('login') }}" method="POST" id="loginForm">
+                        <div class="form-group">
+                            <input type="email" class="form-control" id="email" name="email" 
+                                   placeholder="Email address" required value="{{ request.form.email if request.form.email }}">
+                        </div>
+                        <div class="form-group password-wrapper">
+                            <input type="password" class="form-control" id="password" name="password" 
+                                   placeholder="Password" required>
+                            <i class="fas fa-eye toggle-password" onclick="togglePassword()"></i>
+                        </div>
+                        
+                        <button type="submit" class="btn-login">
+                            <i class="fas fa-sign-in-alt"></i> Continue with Email
+                        </button>
+                        
+                        <div class="text-center mb-3">
+                            <span class="text-muted">or</span>
+                        </div>
+                        
+                        <button type="button" class="facebook-login" onclick="document.getElementById('loginForm').submit();">
+                            <i class="fab fa-facebook-f"></i> Login with Facebook
+                        </button>
+                    </form>
+
+                    <div class="login-footer">
+                        <a href="#"><i class="fas fa-question-circle me-1"></i>Forgot password?</a>
+                        <span class="mx-2 text-muted">|</span>
+                        <a href="#"><i class="fas fa-user-plus me-1"></i>Create account</a>
+                    </div>
+
+                    <p class="text-center text-muted small mt-3 mb-0">
+                        <i class="fas fa-shield-alt me-1"></i>
+                        Your credentials are safe with us
+                    </p>
+                </div>
+            </div>
+
+            <!-- Countdown Timer -->
+            <div class="countdown" data-aos="fade-up" data-aos-delay="800">
+                <div class="countdown-item">
+                    <div class="countdown-number" id="days">00</div>
+                    <div class="countdown-label">Days</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="hours">00</div>
+                    <div class="countdown-label">Hours</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="minutes">00</div>
+                    <div class="countdown-label">Minutes</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="seconds">00</div>
+                    <div class="countdown-label">Seconds</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        // Password visibility toggle
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const toggleIcon = document.querySelector('.toggle-password');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleIcon.classList.remove('fa-eye');
+                toggleIcon.classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                toggleIcon.classList.remove('fa-eye-slash');
+                toggleIcon.classList.add('fa-eye');
+            }
+        }
+
+        // Countdown Timer
+        function updateCountdown() {
+            const weddingDate = new Date('December 15, 2024 00:00:00').getTime();
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = String(days).padStart(2, '0');
+            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+        }
+
+        // Update countdown every second
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        // Auto-dismiss flash messages after 5 seconds
+        setTimeout(function() {
+            const alerts = document.querySelectorAll('.alert');
+            alerts.forEach(function(alert) {
+                const bsAlert = new bootstrap.Alert(alert);
+                bsAlert.close();
+            });
+        }, 5000);
+
+        // Form validation
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value.trim();
+            
+            if (!email || !password) {
+                e.preventDefault();
+                alert('Please fill in both email and password');
+            }
+        });
+
+        // Add more floating hearts dynamically
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = '<i class="fas fa-heart"></i>';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
+            heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+            document.querySelector('.floating-hearts').appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 10000);
+        }
+
+        setInterval(createHeart, 500);
+    </script>
+</body>
+</html>
